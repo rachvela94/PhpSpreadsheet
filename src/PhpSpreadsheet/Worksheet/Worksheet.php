@@ -1178,7 +1178,7 @@ class Worksheet implements IComparable
         $pCoordinateUpper = strtoupper($pCoordinate);
 
         // Check cell collection
-        if ($this->cellCollection->has($pCoordinateUpper)) {
+        if ($this->cellCollection && $this->cellCollection->has($pCoordinateUpper)) {
             return $this->cellCollection->get($pCoordinateUpper);
         }
 
@@ -1319,7 +1319,10 @@ class Worksheet implements IComparable
         }
 
         // Cell exists?
-        return $this->cellCollection->has($pCoordinate);
+        if($this->cellCollection) {
+            return $this->cellCollection->has($pCoordinate);
+        }
+        
     }
 
     /**
